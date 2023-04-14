@@ -11,11 +11,12 @@ interface HomePageProps {
   acronyms: Acronym[];
   count: number;
   setAcronyms: any;
+  hasSearched: boolean;
+  setHasSearched: any;
 }
 export const HomePage = (props: HomePageProps) => {
-  const { acronyms, count, setAcronyms } = props;
+  const { acronyms, count, setAcronyms,hasSearched, setHasSearched } = props;
   const [searchItem, setSearchItem] = useState("");
-  const [hasSearched, setHasSearched] = useState(false);
   const router = useRouter();
 
   const handleSearch = (event: any) => {
@@ -23,9 +24,9 @@ export const HomePage = (props: HomePageProps) => {
     if (searchTerm?.length == 0) {
       setHasSearched(false);
       router.push("/");
+      router.reload();
       return;
     }
-    setHasSearched(true);
 
     // Get acronyms data from local storage
     const storedAcronyms = localStorage.getItem("acronyms");
@@ -44,6 +45,7 @@ export const HomePage = (props: HomePageProps) => {
         }
       });
     }
+    setHasSearched(true);
   };
 
   return (

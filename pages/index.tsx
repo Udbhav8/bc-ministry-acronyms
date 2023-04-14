@@ -6,6 +6,7 @@ import { HomePage } from "../src/components/HomePage";
 const Home: NextPage = () => {
   const [acronyms, setAcronyms] = useState([]);
   const [count, setCount] = useState(0);
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     // Get acronyms from local storage
@@ -26,7 +27,13 @@ const Home: NextPage = () => {
   }
 
   return (
-    <HomePage acronyms={acronyms} count={count} setAcronyms={setAcronyms} />
+    <HomePage
+      acronyms={acronyms}
+      count={count}
+      setAcronyms={setAcronyms}
+      hasSearched={hasSearched}
+      setHasSearched={setHasSearched}
+    />
   );
 };
 
